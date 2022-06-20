@@ -1,0 +1,54 @@
+{
+    "name": "kafkiansky/better-laravel",
+    "description": "A set of rules for the Psalm static analysis tool that help to detect popular issues when working with the Laravel framework.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "psalm",
+        "php",
+        "laravel",
+        "static analysis"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kafkiansky\\BetterLaravel\\": "src/"
+        },
+        "files": ["src/functions.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kafkiansky\\BetterLaravel\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "v.zanfir",
+            "email": "vadimzanfir@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.1",
+        "ext-simplexml": "*",
+        "vimeo/psalm": ">= 4.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^8.0",
+        "weirdan/codeception-psalm-module": "^0.13.0"
+    },
+    "extra": {
+        "psalm": {
+            "pluginClass": "Kafkiansky\\BetterLaravel\\Plugin"
+        }
+    },
+    "scripts": {
+        "psalm": "./vendor/bin/psalm --no-cache",
+        "test": [
+            "@codeception"
+        ],
+        "codeception": [
+            "codecept build",
+            "codecept run -v -g better-laravel"
+        ]
+    }
+}

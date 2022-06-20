@@ -1,0 +1,6 @@
+vendor/
+.idea/
+composer.lock
+tests/_run/
+tests/acceptance/_support/
+tests/acceptance/_output/
