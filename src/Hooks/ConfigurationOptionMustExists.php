@@ -76,6 +76,7 @@ final class ConfigurationOptionMustExists implements AfterFunctionCallAnalysisIn
                                     $value->value,
                                     new CodeLocation($event->getStatementsSource(), $event->getExpr()),
                                 ),
+                                $event->getStatementsSource()->getSuppressedIssues(),
                             );
                         }
                     }

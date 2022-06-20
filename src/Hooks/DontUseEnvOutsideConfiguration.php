@@ -28,6 +28,7 @@ final class DontUseEnvOutsideConfiguration implements AfterFunctionCallAnalysisI
                         new EnvCanBeUsedJustInConfigFiles(
                             new CodeLocation($event->getStatementsSource(), $event->getExpr()),
                         ),
+                        $event->getStatementsSource()->getSuppressedIssues(),
                     );
                 }
             }
