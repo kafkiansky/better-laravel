@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Kafkiansky\BetterLaravel;
 
 /**
- * @param non-empty-string $parent
+ * @param class-string $parent
  *
  * @return class-string[]
  */

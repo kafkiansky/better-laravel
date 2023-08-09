@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kafkiansky\BetterLaravel\Hooks;
 
+use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
 use Psalm\CodeLocation;
@@ -14,7 +15,8 @@ use function Kafkiansky\BetterLaravel\classParents;
 
 final class DontExtendApplicationEventServiceProvider implements AfterClassLikeAnalysisInterface
 {
-    private const VENDOR_PROVIDER_NAME = 'Illuminate\Foundation\Support\Providers\EventServiceProvider';
+    /** @var class-string */
+    private const VENDOR_PROVIDER_NAME = EventServiceProvider::class;
 
     /**
      * {@inheritdoc}
@@ -28,7 +30,7 @@ final class DontExtendApplicationEventServiceProvider implements AfterClassLikeA
                 /** @var null|non-empty-string $extend */
                 $extend = $stmt->extends->getAttribute('resolvedName');
 
-                if (null === $extend) {
+                if (null === $extend || false === class_exists($extend)) {
                     return null;
                 }
 
